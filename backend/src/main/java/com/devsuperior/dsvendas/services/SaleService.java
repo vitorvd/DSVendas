@@ -41,4 +41,12 @@ public class SaleService {
 		return repository.successGroupedBySeller();
 	}
 	
+	@Transactional
+    public SaleDTO insert(SaleDTO dto) {
+        Sale entity = dto.toEntity();
+        entity = repository.save(entity);
+        System.out.println("Save Id === " + entity.getId());
+        return new SaleDTO(entity);
+    } 
+	
 }

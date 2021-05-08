@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.devsuperior.dsvendas.entities.Sale;
+import com.devsuperior.dsvendas.entities.Seller;
 
 public class SaleDTO implements Serializable {
 
@@ -37,6 +38,10 @@ public class SaleDTO implements Serializable {
 		amount = entity.getAmount();
 		date = entity.getDate();
 		seller = new SellerDTO(entity.getSeller());
+	}
+	
+	public Sale toEntity() {
+		return new Sale(id, visited, deals, amount, date, new Seller(seller.getId(), seller.getName()));
 	}
 
 	public Long getId() {
